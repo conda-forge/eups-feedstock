@@ -30,7 +30,7 @@ unset REMOVE
 
 
 # restore EUPS env variables existing prior to the activation
-for var in EUPS_PATH EUPS_SHELL SETUP_EUPS EUPS_DIR EUPS_PKGROOT; do
+for var in EUPS_PATH EUPS_SHELL SETUP_EUPS EUPS_DIR; do
   unset $var
   bkvar="CONDA_EUPS_BACKUP_$var"
   if [[ "${!bkvar}" ]]; then
