@@ -7,10 +7,10 @@
 
 # unsetup any products to keep env clean
 # topological sort makes it faster since unsetup works on deps too
-pkg=`eups list -s --topological -D --raw 2>/dev/null | head -1 | cut -d'|' -f1`
+pkg=`eups list -s --topological -D --raw 2>/dev/null | head -1 | cut -d'|' -f1 || echo ""`
 while [[ -n "$pkg" && "$pkg" != "eups" ]]; do
     unsetup $pkg > /dev/null 2>&1
-    pkg=`eups list -s --topological -D --raw 2>/dev/null | head -1 | cut -d'|' -f1`
+    pkg=`eups list -s --topological -D --raw 2>/dev/null | head -1 | cut -d'|' -f1 || echo ""`
 done
 unset pkg
 
