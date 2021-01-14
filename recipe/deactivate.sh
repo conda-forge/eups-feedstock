@@ -33,8 +33,9 @@ unset REMOVE
 for var in EUPS_PATH EUPS_SHELL SETUP_EUPS EUPS_DIR; do
   unset $var
   bkvar="CONDA_EUPS_BACKUP_$var"
-  if [[ "${!bkvar}" ]]; then
-    export $var="${!bkvar}"
+  eval "value=\"${$bkvar}\""
+  if [[ "${value}" ]]; then
+    export $var="${value}"
     unset "$bkvar"
   fi
 done

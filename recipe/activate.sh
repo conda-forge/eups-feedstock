@@ -7,8 +7,9 @@
 
 # clean/backup existing EUPS environment variable
 for var in EUPS_PATH EUPS_SHELL SETUP_EUPS EUPS_DIR; do
-  if [[ "${!var}" ]]; then
-    export CONDA_EUPS_BACKUP_${var}="${!var}"
+  eval "value=\"\${$var}\""
+  if [[ "${value}" ]]; then
+    export CONDA_EUPS_BACKUP_${var}="${value}"
   fi
   unset $var
 done
