@@ -34,6 +34,8 @@ fi
 # initializing eups
 EUPS_DIR="${CONDA_PREFIX}/eups"
 source "${EUPS_DIR}/bin/setups.sh"
-export -f setup
-export -f unsetup
+if [[ "${BASH}" ]]; then
+  export -f setup
+  export -f unsetup
+fi
 
