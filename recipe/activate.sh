@@ -13,12 +13,12 @@ for var in EUPS_PATH EUPS_SHELL SETUP_EUPS EUPS_DIR; do
   fi
   unset $var
 done
-export CONDA_EUPS_BACKUP_setup=`declare -f setup`
+export CONDA_EUPS_BACKUP_setup="`declare -f setup`"
 unset -f setup 2>/dev/null || true
 if [[ -z "$CONDA_EUPS_BACKUP_setup" ]]; then
   unset CONDA_EUPS_BACKUP_setup
 fi
-export CONDA_EUPS_BACKUP_unsetup=`declare -f unsetup`
+export CONDA_EUPS_BACKUP_unsetup="`declare -f unsetup`"
 unset -f unsetup 2>/dev/null || true
 if [[ -z "$CONDA_EUPS_BACKUP_unsetup" ]]; then
   unset CONDA_EUPS_BACKUP_unsetup
@@ -27,7 +27,7 @@ fi
 
 # backup the python path in case eups is changing it
 if [[ -n "${PYTHONPATH}" ]]; then
-  export CONDA_EUPS_BACKUP_PYTHONPATH=${PYTHONPATH}
+  export CONDA_EUPS_BACKUP_PYTHONPATH="${PYTHONPATH}"
 fi
 
 
