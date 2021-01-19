@@ -1,5 +1,5 @@
 {% set name = "eups" %}
-{% set version = "2.1.5" %}
+{% set version = "2.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://github.com/RobertLuptonTheGood/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 095e18b6079c49bdba48355edcb479b0b1b91a9013cafdf00ca112e596b0885b
+  sha256: faab16921721cb0acb325ae8b43930e2114b639f2bd4b123d7e4ecc550aa9df9
 
 build:
-  skip: True  # [win]
-  number: 8
+  skip: true  # [win]
+  number: 0
 
 requirements:
   build:
@@ -30,7 +30,7 @@ about:
   license: GPL-2.0-or-later
   license_family: GPL
   license_file: gpl.txt
-  summary: 'A version manager tracking product dependencies'
+  summary: A version manager tracking product dependencies
 
 extra:
   recipe-maintainers:
