@@ -4,13 +4,17 @@
 # see: https://github.com/beckermr/stackvana-core/blob/master/recipe/stackvana_deactivate.sh
 #
 
+get_setup () {
+    eups list -s --raw 2>/dev/null \
+	| grep -v '^eups|' | head -1 | cut -d'|' -f1 \
+	|| echo ""
+}
 
 # unsetup any products to keep env clean
-# topological sort makes it faster since unsetup works on deps too
-pkg=`eups list -s --topological -D --raw 2>/dev/null | head -1 | cut -d'|' -f1 || echo ""`
-while [[ -n "$pkg" && "$pkg" != "eups" ]]; do
+pkg=`get_setup`
+while [[ -n "$pkg" ]]; do
     unsetup "$pkg" > /dev/null 2>&1
-    pkg=`eups list -s --topological -D --raw 2>/dev/null | head -1 | cut -d'|' -f1 || echo ""`
+    pkg=`get_setup`
 done
 unset pkg
 
