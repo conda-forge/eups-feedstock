@@ -12,7 +12,7 @@ get_setup () {
 
 # unsetup any products to keep env clean
 pkg=`get_setup`
-while [[ -n "$pkg" ]]; do
+while [ -n "$pkg" ]; do
     unsetup "$pkg" > /dev/null 2>&1
     pkg=`get_setup`
 done
@@ -38,7 +38,7 @@ for var in EUPS_PATH EUPS_SHELL SETUP_EUPS EUPS_DIR; do
   unset $var
   bkvar="CONDA_EUPS_BACKUP_$var"
   eval "value=\"\${$bkvar}\""
-  if [[ -n "${value}" ]]; then
+  if [ -n "${value}" ]; then
     export $var="${value}"
     unset "$bkvar"
   fi
@@ -46,7 +46,7 @@ done
 unset bkvar
 unset var
 unset -f setup
-if [[ "$CONDA_EUPS_BACKUP_setup" ]]; then
+if [ "$CONDA_EUPS_BACKUP_setup" ]; then
   eval "$CONDA_EUPS_BACKUP_setup"
   unset CONDA_EUPS_BACKUP_setup
 fi
