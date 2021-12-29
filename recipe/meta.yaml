@@ -11,7 +11,7 @@ source:
 
 build:
   skip: true  # [win]
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -34,6 +34,5 @@ about:
 
 extra:
   recipe-maintainers:
-    - gcomoretto
-    - brianv0
+    - timj
     - ktlim
