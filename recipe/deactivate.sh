@@ -12,12 +12,12 @@ get_setup () {
 }
 
 # unsetup any products to keep env clean
-pkg=`get_setup`
-while [ -n "$pkg" ]; do
-    unsetup "$pkg" > /dev/null 2>&1
-    pkg=`get_setup`
+__eups_pkg=$(get_setup)
+while [ -n "$__eups_pkg" ]; do
+    unsetup "$__eups_pkg" > /dev/null 2>&1
+    __eups_pkg=$(get_setup)
 done
-unset pkg
+unset __eups_pkg
 
 
 # clean out the path, removing EUPS_DIR/bin
@@ -35,17 +35,17 @@ unset REMOVE
 
 
 # restore EUPS env variables existing prior to the activation
-for var in EUPS_PATH EUPS_SHELL SETUP_EUPS EUPS_DIR; do
-  unset $var
-  bkvar="CONDA_EUPS_BACKUP_$var"
-  eval "value=\"\${$bkvar}\""
-  if [ -n "${value}" ]; then
-    export $var="${value}"
-    unset "$bkvar"
+for __eups_var in EUPS_PATH EUPS_SHELL SETUP_EUPS EUPS_DIR; do
+  unset $__eups_var
+  __eups_bkvar="CONDA_EUPS_BACKUP_$__eups_var"
+  eval "__eups_value=\"\${$__eups_bkvar}\""
+  if [ -n "${__eups_value}" ]; then
+    export $__eups_var="${__eups_value}"
+    unset "$__eups_bkvar"
   fi
 done
-unset bkvar
-unset var
+unset __eups_bkvar
+unset __eups_var
 unset -f setup
 if [ "$CONDA_EUPS_BACKUP_setup" ]; then
   eval "$CONDA_EUPS_BACKUP_setup"
