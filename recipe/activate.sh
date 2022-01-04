@@ -1,3 +1,4 @@
+# shellcheck shell=sh
 # Bootstrap EUPS
 #
 # Derived from the stackvana-core recipe by Matt Becker (GitHub @beckermr)
@@ -13,12 +14,14 @@ for var in EUPS_PATH EUPS_SHELL SETUP_EUPS EUPS_DIR; do
   fi
   unset $var
 done
-export CONDA_EUPS_BACKUP_setup="`declare -f setup`"
+# shellcheck disable=SC2155,SC3044
+export CONDA_EUPS_BACKUP_setup="$(declare -f setup 2>/dev/null)"
 unset -f setup 2>/dev/null || true
 if [ -z "$CONDA_EUPS_BACKUP_setup" ]; then
   unset CONDA_EUPS_BACKUP_setup
 fi
-export CONDA_EUPS_BACKUP_unsetup="`declare -f unsetup`"
+# shellcheck disable=SC2155,SC3044
+export CONDA_EUPS_BACKUP_unsetup="$(declare -f unsetup 2>/dev/null)"
 unset -f unsetup 2>/dev/null || true
 if [ -z "$CONDA_EUPS_BACKUP_unsetup" ]; then
   unset CONDA_EUPS_BACKUP_unsetup
@@ -33,9 +36,12 @@ fi
 
 # initializing eups
 EUPS_DIR="${CONDA_PREFIX}/eups"
+# shellcheck disable=SC1091
 . "${EUPS_DIR}/bin/setups.sh"
 if [ -n "${BASH}" ]; then
+  # shellcheck disable=SC3045
   export -f setup
+  # shellcheck disable=SC3045
   export -f unsetup
 fi
 

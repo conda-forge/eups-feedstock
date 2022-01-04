@@ -1,3 +1,4 @@
+# shellcheck shell=sh
 # Deactivate EUPS
 # 
 # Derived from the stackvana-core recipe by Matt Becker (GitHub @beckermr)
@@ -51,15 +52,15 @@ if [ "$CONDA_EUPS_BACKUP_setup" ]; then
   unset CONDA_EUPS_BACKUP_setup
 fi
 unset -f unsetup
-if [[ "$CONDA_EUPS_BACKUP_unsetup" ]]; then
+if [ "$CONDA_EUPS_BACKUP_unsetup" ]; then
   eval "$CONDA_EUPS_BACKUP_unsetup"
   unset CONDA_EUPS_BACKUP_unsetup
 fi
 
 
 # restoring exisisting python path
-if [[ "${CONDA_EUPS_BACKUP_PYTHONPATH}" ]]; then
-  export PYTHONPATH=${CONDA_EUPS_BACKUP_PYTHONPATH}
+if [ "${CONDA_EUPS_BACKUP_PYTHONPATH}" ]; then
+  export PYTHONPATH="${CONDA_EUPS_BACKUP_PYTHONPATH}"
   unset CONDA_EUPS_BACKUP_PYTHONPATH
 else
   unset PYTHONPATH
