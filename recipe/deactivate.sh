@@ -5,20 +5,20 @@
 # see: https://github.com/beckermr/stackvana-core/blob/master/recipe/stackvana_deactivate.sh
 #
 
-get_setup () {
+__eups_get_setup () {
     eups list -s --raw 2>/dev/null \
 	| grep -v '^eups|' | head -1 | cut -d'|' -f1 \
 	|| echo ""
 }
 
 # unsetup any products to keep env clean
-__eups_pkg=$(get_setup)
+__eups_pkg=$(__eups_get_setup)
 while [ -n "$__eups_pkg" ]; do
     unsetup "$__eups_pkg" > /dev/null 2>&1
-    __eups_pkg=$(get_setup)
+    __eups_pkg=$(__eups_get_setup)
 done
 unset __eups_pkg
-
+unset -f __eups_get_setup
 
 # clean out the path, removing EUPS_DIR/bin
 # https://stackoverflow.com/questions/370047/what-is-the-most-elegant-way-to-remove-a-path-from-the-path-variable-in-bash
