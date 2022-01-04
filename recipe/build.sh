@@ -13,7 +13,7 @@ export EUPS_PATH="${PREFIX}/share/eups"
 
 
 EUPS_PYTHON=$PYTHON  # use PYTHON in the host env for eups
-mkdir -p ${EUPS_HOME}
+mkdir -p "${EUPS_HOME}"
 
 
 # Install EUPS
@@ -37,16 +37,16 @@ chmod -R u+w "${EUPS_DIR}"
 
 
 # turn off eups locking
-echo "hooks.config.site.lockDirectoryBase = None" >> ${EUPS_DIR}/site/startup.py
+echo "hooks.config.site.lockDirectoryBase = None" >> "${EUPS_DIR}/site/startup.py"
 
 # make eups use a sane path to python in scripts
 # the long line causes failures on linux
 for fname in "eups" "eups_setup"; do
-    cp ${EUPS_DIR}/bin/${fname} ${EUPS_DIR}/bin/${fname}.bak
-    echo "#!/usr/bin/env python" > ${EUPS_DIR}/bin/${fname}
-    tail -n +1 ${EUPS_DIR}/bin/${fname}.bak >> ${EUPS_DIR}/bin/${fname}
-    chmod 755 ${EUPS_DIR}/bin/${fname}
-    rm ${EUPS_DIR}/bin/${fname}.bak
+    cp "${EUPS_DIR}/bin/${fname}" "${EUPS_DIR}/bin/${fname}.bak"
+    echo "#!/usr/bin/env python" > "${EUPS_DIR}/bin/${fname}"
+    tail -n +1 "${EUPS_DIR}/bin/${fname}.bak" >> "${EUPS_DIR}/bin/${fname}"
+    chmod 755 "${EUPS_DIR}/bin/${fname}"
+    rm "${EUPS_DIR}/bin/${fname}.bak"
 done
 
 
