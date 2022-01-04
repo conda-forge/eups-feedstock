@@ -50,12 +50,19 @@ unset -f setup
 if [ "$CONDA_EUPS_BACKUP_setup" ]; then
   eval "$CONDA_EUPS_BACKUP_setup"
   unset CONDA_EUPS_BACKUP_setup
+  __setup_restored=1
 fi
 unset -f unsetup
 if [ "$CONDA_EUPS_BACKUP_unsetup" ]; then
   eval "$CONDA_EUPS_BACKUP_unsetup"
   unset CONDA_EUPS_BACKUP_unsetup
+  __setup_restored=1
 fi
+if [ -n "$EUPS_DIR" ] && [ -z $__setup_restored ]; then
+  # shellcheck disable=SC1091
+  . "${EUPS_DIR}/bin/setups.sh"
+fi
+unset __setup_restored
 
 
 # restoring exisisting python path
