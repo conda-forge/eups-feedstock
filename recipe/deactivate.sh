@@ -24,14 +24,12 @@ unset -f __eups_get_setup
 # https://stackoverflow.com/questions/370047/what-is-the-most-elegant-way-to-remove-a-path-from-the-path-variable-in-bash
 # but use sed instead of bash-only regexp parameter substitution
 __EUPS_WORK=":$PATH:"
-__EUPS_REMOVE=":${EUPS_DIR}/bin:"
 # : is a safe regexp delimiter
-__EUPS_WORK=$(echo "$__EUPS_WORK" | sed -e "s:\:$__EUPS_REMOVE\::\::")
+__EUPS_WORK=$(echo "$__EUPS_WORK" | sed -e "s:\:${EUPS_DIR}/bin\::\::")
 __EUPS_WORK="${__EUPS_WORK%:}"
 __EUPS_WORK="${__EUPS_WORK#:}"
 export PATH="$__EUPS_WORK"
 unset __EUPS_WORK
-unset __EUPS_REMOVE
 
 
 # restore EUPS env variables existing prior to the activation
