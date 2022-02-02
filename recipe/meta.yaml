@@ -11,7 +11,7 @@ source:
 
 build:
   skip: true  # [win]
-  number: 3
+  number: 4
 
 requirements:
   build:
@@ -24,6 +24,9 @@ requirements:
 
   run:
     - python
+    - tar
+    - patch
+    - git
 
 about:
   home: https://github.com/RobertLuptonTheGood/eups
