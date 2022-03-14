@@ -4,3 +4,6 @@ test_on_native_only: true
 bot:
   automerge: true
 provider: {linux_aarch64: default}
+github:
+  branch_name: main
+  tooling_branch_name: main
