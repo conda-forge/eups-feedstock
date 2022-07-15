@@ -8,7 +8,7 @@
 # If we're executing in a subshell that doesn't know about unsetup, we can't
 # affect the real environment, so don't even try to do anything.
 # (The environment should be fixed up later by a proper reactivate.)
-command -v unsetup > /dev/null 2>&1 || exit 0
+command -v unsetup > /dev/null 2>&1 || return 0
 
 __eups_get_setup () {
     eups list -s --raw 2>/dev/null \
