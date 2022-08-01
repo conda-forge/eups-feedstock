@@ -11,13 +11,16 @@ source:
 
 build:
   skip: true  # [win]
-  number: 6
+  number: 7
 
 requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - make
+    - tar
+    - patch
+    - git
 
   host:
     - python
