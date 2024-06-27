@@ -1,5 +1,5 @@
 {% set name = "eups" %}
-{% set version = "2.2.7" %}
+{% set version = "2.2.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/RobertLuptonTheGood/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 863e946af308226da0409a3810b32dd3f5565a29085914dd5134b794d9140566
+  sha256: 15b9e92db2b405cb1589b27da4cb652ac9e7000db5465c6eb26fd2e987f96375
 
 build:
   skip: true  # [win]
